@@ -11,23 +11,64 @@ import {Chrono} from './js/contador.js'
 
 export default {
   name: 'app',
-  data() {
+  data: function () {
     return {
       timer: {
-        minutes: 1,
-        seconds: 0
-      }
+        minutes: "40",
+        seconds: "00"
+      },
+
+      ciclos: {
+        JackClycle: {
+          Trabajo: {
+            nombre: "Trabajo",
+            time: {
+              minutes: 40,
+              seconds: 0
+            }
+          },
+          descansoCorto: {
+            nombre: "Short Break",
+            time: {
+              minutes: 5,
+              seconds: 0
+            }
+          },
+          descansoLargo: {
+            nombre: "Long Break",
+            time: {
+              minutes: 30,
+              seconds: 0
+            }
+          }
+        },
+
+        PomodoroCycle: {
+          Trabajo: {
+            nombre: "Trabajo",
+            time: 25,
+          },
+          descansoCorto: {
+            nombre: "Short Break",
+            time: 5
+          },
+          descansoLargo: {
+            nombre: "Long Break",
+            time: 15
+          }
+        }
+      },
     }
   },
   methods: {
-		iniciar: function () {
-      this.interval = Chrono(1, this)
-		},
+    iniciar: function () {
+      this.interval = Chrono(this)
+    },
 
-		detener: function() {
+    detener: function() {
       clearInterval(this.interval);
-		}
-	}
+    }
+  }
 }
 </script>
 

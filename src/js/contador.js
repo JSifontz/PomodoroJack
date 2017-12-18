@@ -1,6 +1,70 @@
 const seconds = 1000,
       minutes = seconds * 60,
       Hours = minutes * 60
+  
+const Ciclos = {
+  JackCycle: {
+    work: {
+      name: "Trabajo",
+      time: {
+        minutes: 40,
+        seconds: "00"
+      }
+    },
+    breakLong: {
+      name: "Descanso Largo",
+      time: {
+        minutes: 30,
+        seconds: "00"
+      }
+    },
+    breakShort: {
+      name: "Descanso Corto",
+      time: {
+        minutes: 5,
+        seconds: "00"
+      }
+    }
+  },
+  pomodoroCycle: {
+    work: {
+      name: "Trabajo",
+      time: {
+        minutes: 25,
+        seconds: "00"
+      }
+    },
+    breakLong: {
+      name: "Descanso Largo",
+      time: {
+        minutes: 15,
+        seconds: "00"
+      }
+    },
+    breakShort: {
+      name: "Descanso Corto",
+      time: {
+        minutes: 5,
+        seconds: "00"
+      }
+    }
+  }
+}
+
+let actualCycle = Ciclos.JackCycle,
+    cycleIter = 0,
+    cycleOrden = [
+      actualCycle.work,
+      actualCycle.breakShort,
+      actualCycle.work,
+      actualCycle.breakShort,
+      actualCycle.work,
+      actualCycle.breakShort,
+      actualCycle.work,
+      actualCycle.breakLong
+    ]
+
+
 
 const getRemainTime = deadline => {
   let now = new Date(),
@@ -20,7 +84,9 @@ const getRemainTime = deadline => {
   }
 }
 
-const Chrono = (time, app) => {
+const Chrono = (app) => {
+  time = cycleOrden[cycleIter].time.minutes
+
   let miliTime = time *  minutes,
       now = new Date(),
       deadline = new Date(now.valueOf() + miliTime),
@@ -30,7 +96,8 @@ const Chrono = (time, app) => {
 
     if (remainTime.time < 1) {
       clearInterval(app.interval)
-      console.log(this)
+      
+      cycleIter != 7 ? cycleIter++ : cycleIter = 0
     }
 
     app.timer = {
