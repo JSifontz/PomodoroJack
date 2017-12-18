@@ -30,11 +30,11 @@ const Chrono = (time, app) => {
 
     if (remainTime.time < 1) {
       clearInterval(app.interval)
-      console.log('borrar intervalo')
+      console.log(this)
     }
 
     app.timer = {
-      minues: remainTime.minutes,
+      minutes: remainTime.minutes,
       seconds: remainTime.seconds
     }
   }, 1000)
@@ -42,4 +42,6 @@ const Chrono = (time, app) => {
   return timer
 }
 
-module.exports = Chrono
+module.exports = {
+  Chrono
+}
