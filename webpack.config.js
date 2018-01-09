@@ -33,7 +33,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-3']
+            presets: ['env', 'react', 'stage-3']
           }
         },
       },
@@ -61,7 +61,7 @@ module.exports = {
     overlay: true
   },
   performance: {
-    hints: "warning"
+    hints: false
   },
   devtool: '#eval-source-map'
 }

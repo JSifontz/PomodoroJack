@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
+import React from 'react'
+import { render } from 'react-dom'
+import Main from '@/pages/containers/main.js'
 
-let app = new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+const container = document.getElementById('app')
+
+render( <Main />, container)
