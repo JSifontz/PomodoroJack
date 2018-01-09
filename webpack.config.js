@@ -33,7 +33,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-2']
+            presets: ['es2015', 'react', 'stage-3']
           }
         },
       },
@@ -41,7 +41,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'images/[name].[ext]?[hash]'
+          name: 'images/[name].[hash].[ext]'
         }
       }
     ]
