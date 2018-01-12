@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import Layout from '@/pages/components/layout'
 import Counter from '@/counter/components/counter'
+import { AppContainer } from 'react-hot-loader'
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {counter: 30};
-    this.handleClick = this.handleClick.bind(this)
+
+  state = {
+    counter: 30
   }
 
-  handleClick () {
-    console.log('esto está ma')
+  handleClick = () => {
+    console.log('IT WORK!!!!')
   }
 
   render() {
     return (
-      <Layout>
-        <Counter 
-          counter={this.state.counter}
-          handleClick = {this.handleClick}
-        />
-      </Layout>
+      <AppContainer>
+        <Layout>
+          <Counter 
+            counter={this.state.counter}
+            handleClick = {this.handleClick}
+          />
+        </Layout>
+      </AppContainer>
     );
   }
 }
