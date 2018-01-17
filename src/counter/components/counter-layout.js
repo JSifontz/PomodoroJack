@@ -5,7 +5,7 @@ const CounterLayout = (props) => {
 
 	return (
 		<div>
-			<p>{props.count}</p>
+			<p>{props.countShow}</p>
 			<button onClick={props.handleStartClick}>Start</button>
 			<button onClick={props.handleStopClick}>Stop</button>
 			<button onClick={props.handleResetClick}>Reset</button>

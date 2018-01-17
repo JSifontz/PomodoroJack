@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import ReactInterval from 'react-interval'
 import CounterLayout from '@/counter/components/counter-layout'
+import counts from '@/counter/contador'
 
 class Counter extends Component {
 	state = {
 		enabled: false,
 		timeout: 1000,
-		count: 10,
-	}
-	
-	count = () => {
-		this.setState({
-			counterShown: this.state.counterShown - 1
-		})
+		count: 1500,
+		counterShown: '25:00'
 	}
 
 	handleStartClick = () => {
@@ -27,15 +23,17 @@ class Counter extends Component {
 		})
 	}
 
-	interval = () => {
+	handleResetClick = () => {
 		this.setState({
-			count: this.state.count - 1
+			count: 1500
 		})
 	}
 
-	handleResetClick = () => {
+	interval = () => {
+		let counterToShow = this.state.count - 1 
 		this.setState({
-			count: 10
+			count: this.state.count - 1,
+			counterShown: counts(counterToShow)
 		})
 	}
 
@@ -50,7 +48,7 @@ class Counter extends Component {
 				/>
 
 				<CounterLayout
-					count = {this.state.count}
+					countShow = {this.state.counterShown}
 					handleStartClick={this.handleStartClick}
 					handleStopClick={this.handleStopClick}
 					handleResetClick={this.handleResetClick}
