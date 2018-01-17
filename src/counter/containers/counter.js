@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import ReactInterval from 'react-interval'
 import CounterLayout from '@/counter/components/counter-layout'
-import Count from '@/counter/components/count'
 
 class Counter extends Component {
 	state = {
-		counter: 5000,
-		counterShown: 5,
+		enabled: false,
+		timeout: 1000,
+		count: 10,
 	}
 	
 	count = () => {
@@ -15,24 +16,46 @@ class Counter extends Component {
 	}
 
 	handleStartClick = () => {
-		setInterval( this.count, 1000)
+		this.setState({
+			enabled: true
+		})
 	}
 
 	handleStopClick = () => {
-		console.log(this.handleStartClick)
-		clearInterval(this.handleStartClick)
+		this.setState({
+			enabled: false
+		})
+	}
+
+	interval = () => {
+		this.setState({
+			count: this.state.count - 1
+		})
+	}
+
+	handleResetClick = () => {
+		this.setState({
+			count: 10
+		})
 	}
 
 	render(){
-		// Count(this.state.counter, this.state.counterShown)
+
+		const { timeout, enabled, count } = this.state;
 
 		return(
-			<CounterLayout
-				counter = {this.state.counter}
-				counterShown = {this.state.counterShown}
-				handleStartClick={this.handleStartClick}
-				handleStopClick={this.handleStopClick}
-			/>
+			<div>
+				<ReactInterval {...{ timeout, enabled }}
+					callback={this.interval} 
+				/>
+
+				<CounterLayout
+					count = {this.state.count}
+					handleStartClick={this.handleStartClick}
+					handleStopClick={this.handleStopClick}
+					handleResetClick={this.handleResetClick}
+				/>
+			</div>
 		)
 	}
 }
